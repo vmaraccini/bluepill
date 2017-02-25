@@ -52,7 +52,6 @@
     NSString *path = @"testScheme.xcscheme";
     self.config.schemePath = [[[NSBundle bundleForClass:[self class]] resourcePath] stringByAppendingPathComponent:path];
     self.config.headlessMode = YES;
-    [BPUtils quietMode:[BPUtils isBuildScript]];
 
     NSError *err;
     SimServiceContext *sc = [SimServiceContext sharedServiceContextForDeveloperDir:self.config.xcodePath error:&err];

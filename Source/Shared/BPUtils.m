@@ -36,29 +36,19 @@ Message Messages[] = {
 
 static int bp_testing = -1;
 
-#ifdef DEBUG
-static BOOL printDebugInfo = YES;
-#else
 static BOOL printDebugInfo = NO;
-#endif
-
 static BOOL quiet = NO;
 
 + (void)enableDebugOutput:(BOOL)enable {
-    NSLog(@"Enable == %hhd", enable);
     printDebugInfo = enable;
 }
 
-+ (void)quietMode:(BOOL)enable {
-    quiet = enable;
++ (BOOL) debugOutput {
+    return printDebugInfo;
 }
 
-+ (BOOL)isBuildScript {
-    char* buildScript = getenv("BPBuildScript");
-    if (buildScript && !strncmp(buildScript, "YES", 3)) {
-        return YES;
-    }
-    return NO;
++ (void)enableQuietMode:(BOOL)enable {
+    quiet = enable;
 }
 
 + (void)printInfo:(BPKind)kind withString:(NSString *)fmt, ... {
@@ -66,7 +56,7 @@ static BOOL quiet = NO;
         return;
     }
     if (quiet && kind != ERROR) return;
-    FILE *out = kind == ERROR ? stderr : stdout;
+    FILE *out = (kind == ERROR || kind == DEBUGINFO) ? stderr : stdout;
     va_list args;
     va_start(args, fmt);
     NSString *txt = [[NSString alloc] initWithFormat:fmt arguments:args];

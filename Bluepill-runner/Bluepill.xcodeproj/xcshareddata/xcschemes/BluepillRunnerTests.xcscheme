@@ -86,7 +86,7 @@
       </MacroExpansion>
       <EnvironmentVariables>
          <EnvironmentVariable
-            key = "BPBuildScript"
+            key = "BP_DEBUG_OUTPUT"
             value = "YES"
             isEnabled = "YES">
          </EnvironmentVariable>

@@ -91,8 +91,6 @@ struct BPOptions {
         "If `failure-tolerance` is > 0, only retry tests that failed."},
     {'l', "list-tests", BP_MASTER, NO, NO, no_argument, NULL, BP_VALUE | BP_BOOL, "listTestsOnly",
         "Only list tests in bundle"},
-    {'v', "verbose", BP_MASTER | BP_SLAVE, NO, NO, no_argument, "Off", BP_VALUE | BP_BOOL, "verboseLogging",
-        "Enable verbose logging"},
 
     // options without short-options
     {350, "additional-xctests", BP_MASTER | BP_SLAVE, NO, NO, required_argument, NULL, BP_LIST | BP_PATH, "additionalTestBundles",
@@ -109,6 +107,8 @@ struct BPOptions {
         "The maximum amount of time, in seconds, to wait before giving up on application launch in the simulator"},
     {356, "delete-timeout", BP_MASTER | BP_SLAVE, NO, NO, required_argument, "900", BP_VALUE, "deleteTimeout",
         "The maximum amount of time, in seconds, to wait before giving up on simulator deletion"},
+    {357, "debug", BP_MASTER | BP_SLAVE, NO, NO, no_argument, "Off", BP_VALUE | BP_BOOL, "debugOutput",
+        "Enable debug output."},
     {0, 0, 0, 0, 0, 0, 0}
 };
 
@@ -139,6 +139,16 @@ struct BPOptions {
     }
     if (!file || [self loadConfigFile:file withError:err]) {
         return self;
+    }
+    // Now initialize quietMode and debugOutput from the environemnt
+    self.quiet = NO;
+    self.debugOutput = NO;
+    char *p;
+    if ((p = getenv("BP_QUIET_MODE")) && !strncmp(p, "YES", 3)) {
+        self.quiet = YES;
+    }
+    if ((p = getenv("BP_DEBUG_OUTPUT")) && !strncmp(p, "YES", 3)) {
+        self.debugOutput = YES;
     }
     return nil;
 }

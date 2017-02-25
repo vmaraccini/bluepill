@@ -20,9 +20,6 @@
 
 - (void)setUp {
     [super setUp];
-    
-    [BPUtils quietMode:[BPUtils isBuildScript]];
-
 }
 
 - (void)tearDown {

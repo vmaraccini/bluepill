@@ -14,11 +14,16 @@ command -v $XCPRETTY >/dev/null 2>&1 || {
         XCPRETTY=cat
 }
 
+# enable quiet mode
+BP_QUIET_MODE=YES
+export BP_QUIET_MODE
+
 configurations="build test instance_tests runner_tests integration_tests verbose_tests"
 
 if [ "$1" == "-v" ]
 then
-    VERBOSE=1
+    BP_DEBUG_OUTPUT=YES
+    export BP_DEBUG_OUTPUT
     shift
 fi
 
@@ -52,17 +57,6 @@ rm -rf build/
 
 NSUnbufferedIO=YES
 export NSUnbufferedIO
-
-# If BPBuildScript is set to YES, it will disable verbose output in `bp`
-BPBuildScript=YES
-
-# Set it to YES if we're on Travis
-if [ "$TRAVIS" == "true" ] || [ "$VERBOSE" == "1" ]
-then
-    BPBuildScript=NO
-fi
-
-export BPBuildScript
 
 mkdir -p build/
 
@@ -157,13 +151,6 @@ bluepill_integration_tests()
     echo See results.txt for details
     exit 1
   fi
-}
-
-bluepill_verbose_tests()
-{
-    BPBuildScript=NO
-    export BPBuildScript
-    bluepill_test
 }
 
 bluepill_test()

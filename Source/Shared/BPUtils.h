@@ -34,18 +34,13 @@ typedef NS_ENUM(int, BPKind) {
  @param enable True enables debugging, False disables it.
  */
 + (void)enableDebugOutput:(BOOL)enable;
++ (BOOL)debugOutput;
 
 /*!
  @discussion omit all output except fatal errors
  @param enable True enables quiet mode, False disables it.
  */
-+ (void)quietMode:(BOOL)enable;
-
-/*!
- @discussion returns true if the environment variable `BPBuildScript` is set to `YES`
- which indicates that the application is running via the build script
- */
-+ (BOOL)isBuildScript;
++ (void)enableQuietMode:(BOOL)enable;
 
 /*!
  @discussion creates a temporary directory via mkdtemp(3)

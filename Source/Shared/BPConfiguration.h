@@ -56,8 +56,8 @@ typedef NS_ENUM(NSInteger, BPProgram) {
 @property (nonatomic, strong) NSNumber *numSims;
 @property (nonatomic) BOOL listTestsOnly;
 @property (nonatomic) BOOL quiet;
+@property (nonatomic) BOOL debugOutput;
 @property (nonatomic) BPProgram program; // one of BP_MASTER or BP_SLAVE
-@property (nonatomic) BOOL verboseLogging;
 @property (nonatomic, strong) NSNumber *maxCreateTries;
 @property (nonatomic, strong) NSNumber *maxInstallTries;
 @property (nonatomic, strong) NSNumber *maxLaunchTries;
