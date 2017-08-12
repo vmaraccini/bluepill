@@ -19,6 +19,8 @@
 #import "BPTestBundleConnection.h"
 #import "BPTestDaemonConnection.h"
 
+#import <FBSimulatorControl/FBSimulatorControl.h>
+
 @interface BPSimulator()
 
 @property (nonatomic, strong) BPConfiguration *config;
@@ -100,6 +102,22 @@
 
 
 - (void)bootWithCompletion:(void (^)(NSError *error))completion {
+    FBSimulator *simulator = [FBSimulator fromSimDevice:self.device
+                                          configuration:nil
+                                      launchdSimProcess:nil
+                            containerApplicationProcess:nil
+                                                    set:nil];
+
+    FBSimulatorInteraction *interaction = [FBSimulatorInteraction withSimulator:simulator];
+
+    NSString *hostBundleId = [SimulatorHelper bundleIdForPath:self.config.appBundlePath];
+    [interaction overrideWatchDogTimerForApplications:@[hostBundleId] withTimeout:1000];
+
+    NSError *internalError;
+    if (![interaction perform:&internalError]) {
+        [BPUtils printInfo:ERROR withString:@"Watchdog override error: %@", [internalError localizedDescription]];
+    }
+
     // Now boot it.
     if (self.config.headlessMode) {
         [BPUtils printInfo:INFO withString:@"Running in HEADLESS mode..."];
@@ -184,7 +202,7 @@
 
     SimDevice *device = deviceSet.devicesByUDID[deviceID];
     return device; //could be nil when not found
- }
+}
 
 - (NSRunningApplication *)findSimGUIAppWithDeviceUDID:(NSString *)deviceUDID {
     NSString * cmd = [NSString stringWithFormat:@"ps -A | grep 'Simulator\\.app.*-CurrentDeviceUDID %@'", deviceUDID];
@@ -219,6 +237,7 @@
                       installApplication:[NSURL fileURLWithPath:hostBundlePath]
                       withOptions:@{kCFBundleIdentifier: hostBundleId}
                       error:error];
+
     if (!installed) {
         return NO;
     }
