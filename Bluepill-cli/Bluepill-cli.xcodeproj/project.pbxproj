@@ -86,15 +86,24 @@
 		C41A2C7B1E0B4306005D9751 /* BPTestClass.m in Sources */ = {isa = PBXBuildFile; fileRef = C41A2C761E0B24E8005D9751 /* BPTestClass.m */; };
 		C467E54A1DC930D200BC80EE /* BPCLITests.m in Sources */ = {isa = PBXBuildFile; fileRef = C467E5491DC930D200BC80EE /* BPCLITests.m */; };
 		C4FAC2951E5E67ED00ACC5D9 /* testConfig-busted.json in Resources */ = {isa = PBXBuildFile; fileRef = C4FAC2941E5E67ED00ACC5D9 /* testConfig-busted.json */; };
+		D43EF59E1F3FA13D00838037 /* FBControlCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43EF59B1F3FA13D00838037 /* FBControlCore.framework */; };
+		D43EF59F1F3FA13D00838037 /* FBSimulatorControl.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43EF59C1F3FA13D00838037 /* FBSimulatorControl.framework */; };
+		D43EF5A01F3FA13D00838037 /* XCTestBootstrap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D43EF59D1F3FA13D00838037 /* XCTestBootstrap.framework */; };
+		D43EF5A81F3FA16300838037 /* FBControlCore.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D43EF59B1F3FA13D00838037 /* FBControlCore.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D43EF5A91F3FA16300838037 /* FBSimulatorControl.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D43EF59C1F3FA13D00838037 /* FBSimulatorControl.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		D43EF5AA1F3FA16300838037 /* XCTestBootstrap.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = D43EF59D1F3FA13D00838037 /* XCTestBootstrap.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		7A7901801D5CB679004D4325 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = /usr/share/man/man1/;
-			dstSubfolderSpec = 0;
+			buildActionMask = 8;
+			dstPath = "";
+			dstSubfolderSpec = 10;
 			files = (
+				D43EF5A81F3FA16300838037 /* FBControlCore.framework in CopyFiles */,
+				D43EF5A91F3FA16300838037 /* FBSimulatorControl.framework in CopyFiles */,
+				D43EF5AA1F3FA16300838037 /* XCTestBootstrap.framework in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 1;
 		};
@@ -915,6 +924,9 @@
 		C41A2C761E0B24E8005D9751 /* BPTestClass.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPTestClass.m; sourceTree = "<group>"; };
 		C467E5491DC930D200BC80EE /* BPCLITests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BPCLITests.m; sourceTree = "<group>"; };
 		C4FAC2941E5E67ED00ACC5D9 /* testConfig-busted.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = "testConfig-busted.json"; sourceTree = "<group>"; };
+		D43EF59B1F3FA13D00838037 /* FBControlCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBControlCore.framework; path = Dependencies/FBControlCore.framework; sourceTree = "<group>"; };
+		D43EF59C1F3FA13D00838037 /* FBSimulatorControl.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSimulatorControl.framework; path = Dependencies/FBSimulatorControl.framework; sourceTree = "<group>"; };
+		D43EF59D1F3FA13D00838037 /* XCTestBootstrap.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTestBootstrap.framework; path = Dependencies/XCTestBootstrap.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -922,6 +934,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D43EF59E1F3FA13D00838037 /* FBControlCore.framework in Frameworks */,
+				D43EF59F1F3FA13D00838037 /* FBSimulatorControl.framework in Frameworks */,
+				D43EF5A01F3FA13D00838037 /* XCTestBootstrap.framework in Frameworks */,
 				7AB913001D5E209800621608 /* AppKit.framework in Frameworks */,
 				7AB913011D5E209800621608 /* Foundation.framework in Frameworks */,
 				7A79018F1D5D1370004D4325 /* CoreSimulator.framework in Frameworks */,
@@ -994,6 +1009,9 @@
 		7A79018D1D5D136F004D4325 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D43EF59B1F3FA13D00838037 /* FBControlCore.framework */,
+				D43EF59C1F3FA13D00838037 /* FBSimulatorControl.framework */,
+				D43EF59D1F3FA13D00838037 /* XCTestBootstrap.framework */,
 				BA1809BC1DB89B8B00D7D130 /* AppKit.framework */,
 				7AB912FE1D5E209800621608 /* AppKit.framework */,
 				7A79018E1D5D136F004D4325 /* CoreSimulator.framework */,
@@ -2177,6 +2195,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEPLOYMENT_LOCATION = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Dependencies",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Dependencies/**",
+					"$(inherited)",
+				);
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CFLAGS = "-DBP_USE_PRIVATE_FRAMEWORKS";
 				OTHER_LDFLAGS = (
@@ -2195,6 +2222,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEPLOYMENT_LOCATION = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Dependencies",
+				);
+				HEADER_SEARCH_PATHS = (
+					"$(PROJECT_DIR)/Dependencies/**",
+					"$(inherited)",
+				);
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				OTHER_CFLAGS = "-DBP_USE_PRIVATE_FRAMEWORKS";
 				OTHER_LDFLAGS = (

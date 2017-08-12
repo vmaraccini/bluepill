@@ -512,6 +512,7 @@
 			buildSettings = {
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = 57Y47U492U;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -521,6 +522,7 @@
 			buildSettings = {
 				DEPLOYMENT_LOCATION = NO;
 				DEVELOPMENT_TEAM = 57Y47U492U;
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
